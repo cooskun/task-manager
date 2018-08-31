@@ -5,6 +5,7 @@ const path = require("path");
 // Plugins
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
 const config = {
   entry: {
@@ -27,22 +28,11 @@ const config = {
       },
       {
         test: /\.css$/,
-        use: [
-          "style-loader",
-          "css-loader",
-          "postcss-loader",
-          "resolve-url-loader"
-        ]
+        use: ["style-loader", "css-loader", "postcss-loader"]
       },
       {
         test: /\.s[ac]ss$/,
-        use: [
-          "style-loader",
-          "css-loader",
-          "postcss-loader",
-          "sass-loader",
-          "resolve-url-loader"
-        ]
+        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"]
       }
     ]
   },
@@ -60,7 +50,10 @@ const config = {
     }),
 
     /* Log the Progress */
-    new webpack.ProgressPlugin()
+    new webpack.ProgressPlugin(),
+
+    /* Uglify JS */
+    new UglifyJSPlugin()
   ]
 };
 

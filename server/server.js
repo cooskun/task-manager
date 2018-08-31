@@ -1,16 +1,15 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-
 const app = express();
 
-// Models
-const User = require("./models/user");
-const Task = require("./models/task");
+const Controller = require("./controller");
 
-app.use(express.static("client/dist/"));
+const bodyParser = require("body-parser");
 
 // Make sure bodyParser has been placed before CRUD operations
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.use(express.static("client/dist/"));
 
 // Setup the database
 const mongoose = require("mongoose");
@@ -36,46 +35,13 @@ app.get("/", (req, res) => {
   res.sendFile(process.cwd() + "/client/dist/index.html");
 });
 
-app.post("/api/create_task", (req, res) => {
-  const data = new Task({
-    title: req.body.title,
-    describe: req.body.describe
-  });
+app.post("/api/create_task", Controller.create_task);
+app.post("/api/create_user", Controller.create_user);
 
-  db.collection("tasks").insertOne(data, (err, result) => {
-    if (err) return console.log(err);
-    res.redirect("/");
-  });
-});
+app.get("/api/get_users", Controller.get_users);
+app.get("/api/get_tasks", Controller.get_tasks);
 
-app.post("/api/create_user", (req, res) => {
-  console.log(req.params);
-  const data = new User({
-    username: req.body.username,
-    password: req.body.password,
-    status: "developer"
-  });
+app.put("/api/update_task/:id", Controller.update_task);
 
-  db.collection("users").insertOne(data, (err, result) => {
-    if (err) return console.log(err);
-    res.redirect("/");
-  });
-});
-
-app.get("/api/get_tasks", (req, res) => {
-  db.collection("tasks")
-    .find({})
-    .toArray((err, result) => {
-      if (err) return err;
-      res.send(result);
-    });
-});
-
-app.get("/api/get_users", (req, res) => {
-  db.collection("users")
-    .find({})
-    .toArray((err, result) => {
-      if (err) return err;
-      res.send(result);
-    });
-});
+app.delete("/api/delete_user/:id", Controller.delete_user);
+app.delete("/api/delete_task/:id", Controller.delete_task);

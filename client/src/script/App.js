@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { Link, Route, BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 
+// Components
 import Login from "./Components/login";
-import TaskList from "./Components/task-list";
-import AddUser from "./Components/add-user";
+import UserList from "./Components/user-list";
+import Dashboard from "./Components/dashboard";
+import CreateUser from "./Components/create-user";
 import CreateTask from "./Components/create-task";
 
 class App extends Component {
@@ -18,12 +20,18 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div style={{ width: "60%", margin: "0 auto" }}>
-          <Link to="/add_user">Add User</Link>
+        <div className="container">
+          <Route
+            exact
+            path="/"
+            component={this.state.isLogged ? Dashboard : Login}
+          />
 
-          <Route exact path="/" component={Login} />
-          <Route path="/add_user" component={AddUser} />
-          <Route path="/tasks" component={TaskList} />
+          <Route path="/login" component={Login} />
+          <Route path="/users" component={UserList} />
+          <Route path="/tasks" component={Dashboard} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/create_user" component={CreateUser} />
           <Route path="/create_task" component={CreateTask} />
         </div>
       </Router>

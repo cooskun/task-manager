@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 import Task from "./task";
+import CreateUser from "./create-user.js";
 
 class TaskList extends Component {
   constructor(props) {
@@ -14,11 +15,9 @@ class TaskList extends Component {
 
   fetchTasks() {
     axios.get("/api/get_tasks").then(res => {
-      if (res.status == 200) {
-        this.setState({
-          tasks: res.data
-        });
-      }
+      this.setState({
+        tasks: res.data
+      });
     });
   }
 
@@ -26,17 +25,20 @@ class TaskList extends Component {
     this.fetchTasks();
   }
 
+  componentDidUpdate() {
+    this.fetchTasks();
+  }
+
   render() {
     return (
-      <div className="list-group">
-        {this.state.tasks.map((item, index) => {
-          return <Task task={item} key={`task-${index}`} />;
-        })}
-
-        <Link to="/create_task">
-          <button className="btn btn-primary">New Task</button>
-        </Link>
-      </div>
+      <React.Fragment>
+        <h1>Tasks</h1>
+        <div className="list-group">
+          {this.state.tasks.map((item, index) => {
+            return <Task task={item} key={`task-${index}`} />;
+          })}
+        </div>
+      </React.Fragment>
     );
   }
 }
