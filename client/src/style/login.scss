@@ -1,0 +1,18 @@
+.login {
+  &__wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @extend .col-sm-10, .col-md-8, .col-lg-4;
+  }
+  &__form {
+    input {
+      margin-bottom: 1rem;
+      @extend .form-control, .form-control-lg;
+    }
+    button[type="submit"] {
+      @extend .btn, .btn-primary, .btn-lg, .btn-block;
+    }
+  }
+}

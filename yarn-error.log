@@ -1,0 +1,88 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js run start
+
+PATH: 
+  C:\cmder\bin;C:\cmder\vendor\conemu-maximus5\ConEmu\Scripts;C:\cmder\vendor\conemu-maximus5;C:\cmder\vendor\conemu-maximus5\ConEmu;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5 & MySQL Utilities 1.5\;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5 & MySQL Utilities 1.5\Doctrine extensions for PHP\;C:\Program Files\Git\cmd;C:\Program Files (x86)\MKVToolNix;C:\Program Files (x86)\Yarn\bin\;%NVM_HOME%;%NVM_SYMLINK%;C:\Program Files (x86)\Sudowin\Clients\Console;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\Ruby24-x64\bin;C:\Python35\Scripts\;C:\Python35\;C:\Users\coskunbaris\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Heroku\bin;C:\Users\coskunbaris\AppData\Roaming\npm;C:\Users\coskunbaris\AppData\Local\Yarn\bin;C:\Users\coskunbaris\AppData\Local\hyper\app-2.0.0\resources\bin;C:\Users\coskunbaris\AppData\Roaming\nvm;C:\Program Files\nodejs;;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\share\vim\vim74;C:\cmder\
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  8.11.1
+
+Platform: 
+  win32 x64
+
+npm manifest: 
+  {
+    "name": "TaskManager",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/coskunbaris/TaskManager.git",
+    "author": "coskunbaris <coskun.bris@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+      "start": "npm-run-all --parallel build serve",
+      "build": "webpack --mode production",
+      "serve": "nodemon server/server.js"
+    },
+    "devDependencies": {
+      "babel-core": "^6.26.3",
+      "babel-loader": "^7.1.5",
+      "babel-polyfill": "^6.26.0",
+      "babel-preset-env": "^1.7.0",
+      "babel-preset-react": "^6.24.1",
+      "clean-webpack-plugin": "^0.1.19",
+      "css-loader": "^1.0.0",
+      "html-webpack-plugin": "^3.2.0",
+      "node-sass": "^4.9.3",
+      "nodemon": "^1.18.3",
+      "npm-run-all": "^4.1.3",
+      "path": "^0.12.7",
+      "postcss-loader": "^3.0.0",
+      "resolve-url-loader": "^2.3.0",
+      "rucksack-css": "^1.0.2",
+      "sass-loader": "^7.1.0",
+      "style-loader": "^0.22.1",
+      "uglifyjs-webpack-plugin": "^1.3.0",
+      "webpack": "^4.17.1",
+      "webpack-cli": "^3.1.0"
+    },
+    "dependencies": {
+      "autoprefixer": "^9.1.3",
+      "axios": "^0.18.0",
+      "body-parser": "^1.18.3",
+      "bootstrap": "^4.1.3",
+      "express": "^4.16.3",
+      "jquery": "^3.3.1",
+      "mongodb": "^3.1.4",
+      "mongoose": "^5.2.9",
+      "popper.js": "^1.14.4",
+      "prop-types": "^15.6.2",
+      "react": "^16.4.2",
+      "react-dom": "^16.4.2",
+      "react-router-dom": "^4.3.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: Command failed.
+  Exit code: 1
+  Command: C:\WINDOWS\system32\cmd.exe
+  Arguments: /d /s /c npm-run-all --parallel build serve
+  Directory: C:\Users\coskunbaris\Desktop\github\repositories\task-manager
+  Output:
+  
+      at ProcessTermError.MessageError (C:\Program Files (x86)\Yarn\lib\cli.js:186:110)
+      at new ProcessTermError (C:\Program Files (x86)\Yarn\lib\cli.js:226:113)
+      at ChildProcess.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:30281:17)
+      at emitTwo (events.js:126:13)
+      at ChildProcess.emit (events.js:214:7)
+      at maybeClose (internal/child_process.js:925:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
