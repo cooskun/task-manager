@@ -5,17 +5,22 @@ import store from "../store";
 class User extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       status: this.props.user.status
     };
+
     this.handleDelete = this.handleDelete.bind(this);
   }
+
   handleDelete() {
     const { _id } = this.props.user;
+
     // // axios.delete(`/api/delete_user/${username}`);
     axios.delete(`/api/delete_user/${_id}`);
     console.log(_id);
   }
+
   render() {
     const { status } = store.getState().user;
 

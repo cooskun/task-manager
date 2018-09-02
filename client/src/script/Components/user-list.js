@@ -1,15 +1,19 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
+
+// Component
 import User from "./user";
 import Navigation from "./navigation";
+
 class UserList extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       users: []
     };
   }
+
   fetchUsers() {
     axios.get("/api/get_users").then(res => {
       this.setState({
@@ -17,12 +21,15 @@ class UserList extends Component {
       });
     });
   }
+
   componentDidMount() {
     this.fetchUsers();
   }
+
   componentDidUpdate() {
     this.fetchUsers();
   }
+
   render() {
     return (
       <React.Fragment>

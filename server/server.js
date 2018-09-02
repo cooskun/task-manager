@@ -24,10 +24,12 @@ app.listen(3000, () => {
 app.get("/", (req, res) => {
   res.sendFile(process.cwd() + "/client/dist/index.html");
 });
+
 app.post("/api/create_task", Controller.create_task);
 app.post("/api/create_user", Controller.create_user);
 app.get("/api/get_users", Controller.get_users);
 app.get("/api/get_tasks", Controller.get_tasks);
+app.get("/api/get_task/:id", Controller.get_task);
 app.put("/api/update_task/:id", Controller.update_task);
 app.delete("/api/delete_user/:id", Controller.delete_user);
 app.delete("/api/delete_task/:id", Controller.delete_task);
