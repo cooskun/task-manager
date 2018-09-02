@@ -1,34 +1,53 @@
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router";
 import axios from "axios";
+
+import store, { setUser, toggleLogin } from "../store";
+
 import "../../style/app.scss";
+
 class Login extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       users: [],
       isLogged: false
     };
+
     this.handleLogin = this.handleLogin.bind(this);
     this.loginForm = this.loginForm.bind(this);
   }
+
   handleLogin(e) {
     e.preventDefault();
+
     const { users } = this.state;
     const username = document.forms["form_login"]["username"].value;
     const password = document.forms["form_login"]["password"].value;
+
     let usernames = [];
+
     users.map(item => {
       usernames.push(item.username);
     });
+
     if (usernames.includes(username)) {
-      users.map(item => {
+      // Username and password control
+      users.map((item, index) => {
         if (item.username == username) {
           /* Username is okay. Now check if password is correct */
           // Password is correct
           if (item.password == password) {
-            this.setState({ isLogged: true });
-          } else {
+            store.dispatch(setUser(item));
+            store.dispatch(toggleLogin());
+
+            this.setState({
+              isLogged: store.getState().isLogged
+            });
+          }
+          // Password is wrong
+          else {
             alert("Password is wrong");
           }
         }
@@ -37,6 +56,7 @@ class Login extends Component {
       alert("Username couldn't find");
     }
   }
+
   fetchUsers() {
     axios.get("/api/get_users").then(res => {
       this.setState({
@@ -44,9 +64,11 @@ class Login extends Component {
       });
     });
   }
+
   componentDidMount() {
     this.fetchUsers();
   }
+
   loginForm() {
     return (
       <div className="row justify-content-center">
@@ -77,6 +99,7 @@ class Login extends Component {
       </div>
     );
   }
+
   render() {
     return (
       <Route
@@ -89,4 +112,5 @@ class Login extends Component {
     );
   }
 }
+
 export default Login;

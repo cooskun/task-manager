@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+
+import store from "../store";
 class User extends Component {
   constructor(props) {
     super(props);
@@ -15,15 +17,19 @@ class User extends Component {
     console.log(_id);
   }
   render() {
+    const { status } = store.getState().user;
+
     return (
       <div className="user-item">
         <span className="user-item__username">{this.props.user.username}</span>
         {/* Admin is not able to be delete. If the user is not admin, attach a delete button */}
         {this.state.status != "admin" ? (
           <span className="user-item__button">
-            <button className="btn btn-danger" onClick={this.handleDelete}>
-              Delete
-            </button>
+            {status == "admin" && (
+              <button className="btn btn-danger" onClick={this.handleDelete}>
+                Delete
+              </button>
+            )}
           </span>
         ) : (
           ""

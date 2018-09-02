@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
+import store from "../store";
 class Navigation extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
+    const status = store.getState().user["status"];
+
     return (
       <React.Fragment>
         <div className="row pt-3 pb-3">
@@ -20,17 +25,21 @@ class Navigation extends Component {
               </a>
             </li>
           </ul>
-          <div className="col-4 nav__side--right">
-            <Link to="/create_task">
-              <button className="btn btn-primary">Create New Task</button>
-            </Link>
-            <Link to="/create_user">
-              <button className="btn btn-primary">Create New User</button>
-            </Link>
-          </div>
+
+          {status == "admin" && (
+            <div className="col-4 nav__side--right">
+              <Link to="/create_task">
+                <button className="btn btn-primary">Create New Task</button>
+              </Link>
+              <Link to="/create_user">
+                <button className="btn btn-primary">Create New User</button>
+              </Link>
+            </div>
+          )}
         </div>
       </React.Fragment>
     );
   }
 }
+
 export default Navigation;

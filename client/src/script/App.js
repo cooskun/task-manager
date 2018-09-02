@@ -1,18 +1,22 @@
 import React, { Component } from "react";
 import { Route, BrowserRouter as Router } from "react-router-dom";
+
 // Components
 import Login from "./Components/login";
 import UserList from "./Components/user-list";
 import Dashboard from "./Components/dashboard";
 import CreateUser from "./Components/create-user";
 import CreateTask from "./Components/create-task";
+
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       isLogged: false
     };
   }
+
   render() {
     return (
       <Router>
@@ -33,4 +37,5 @@ class App extends Component {
     );
   }
 }
+
 export default App;
